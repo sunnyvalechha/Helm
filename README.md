@@ -54,6 +54,76 @@ Step 2: Install AWS Load Balancer Controller
     helm uninstall nginxv1
 
 
+    mkdir -p best-commer/{payments,shipping}
+    cd best-commer/
+    helm create payments
+    helm create shipping
+
+Note: The Above commands will create "Chart.yaml, values.yaml, templates, charts" inside a folder
+
+* Chart.yml - this acts as metadata for charts.
+* templates - put the deployments.yml file or stateful sets or daemonsets file, service account, and config maps.
+
+    cd best-commer/payments/templates/
+    vim deployment.yaml    # Delete all contents of the deployment.yaml & paste below yml
+
+
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: {{ .Release.Name }}-{{ .Chart.Name }}
+    labels:
+      app: {{ .Chart.Name }}
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: {{ .Chart.Name }}
+    template:
+      metadata:
+        labels:
+          app: {{ .Chart.Name }}
+      spec:
+        containers:
+          - name: {{ .Chart.Name }}
+            image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+            command: ['sh', '-c', 'echo {{ .Values.appMessage }}; sleep 3600']
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+
+
+* This code is the same as deployment.yml, which we have deleted above, but notice this file has a lot of variables.
+
+  cd /home/ubuntu/best-commer/payments
+  vim values.yaml    # Delete all contents of the deployment.yaml & paste below yml
+    image:
+      repository: busybox
+      tag: latest
+      pullpolicy: IfNotPresent
+    appMessage: "Payments Service"
+
+<img width="301" height="104" alt="image" src="https://github.com/user-attachments/assets/b7ef104b-40f9-4e9c-9cea-a60f0175df4f" />
+
+* Observe that the values.yml file has a variable that deployment.yml requires
+
+  vim Chart.yaml  # update app version
+
+<img width="835" height="367" alt="image" src="https://github.com/user-attachments/assets/bfbc57d2-6ede-4143-a34e-1bc3820cb1ff" />
+
+* Once the shipping folder is also update with required details, now bundle them into a chart.
+
+
+  helm package payments
+
+<img width="809" height="67" alt="image" src="https://github.com/user-attachments/assets/9896ae55-4f95-405a-a1f9-b60e26237b64" />
+
+* It will create a zip file also called as charts.
+
+  "helm repo index ."
+
+* It will create an index file
+* Using this index file, we can add this repo to a Nexus or GitHub with the "helm repo add" command
+
+
     
 
 
