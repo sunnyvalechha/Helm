@@ -10,6 +10,16 @@ To install any package in our system, we need a repository, just like yum or apt
 
 Bitnami is a popular maintainer of Helm repository: https://bitnami.com/
 
+Minikube Install:
+
+apt-get update -y
+apt-get install docker.io -y
+sudo usermod -aG docker ubuntu
+curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
+minikube start
+alias kubectl="minikube kubectl --"
+
 Install helm on ubuntu:
     
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4
