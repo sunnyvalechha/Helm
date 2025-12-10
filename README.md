@@ -1,9 +1,11 @@
 Helm:
+
 * Helm is a package manager for Kubernetes that allows us to install any controller on Kubernetes. Example: Prometheus, Grafana, ArgoCD, or any application like nginx, httpd. It can be installed through Helm.
 * We can install, Uninstall, Update, or package an application as a Helm chart so that someone else can also be able to installation the same application through Helm.
 * Kubernetes should be installed on the system, but not mandatory.
 
 Helm Repository:
+
 To install any package in our system, we need a repository, just like yum or apt-get. Same way, we must have a Helm repository that has all the charts. A chart is a bundle or package of the application.
 
 Bitnami is a popular maintainer of Helm repository: https://bitnami.com/
@@ -17,6 +19,7 @@ Install helm on ubuntu:
     sudo apt-get install helm
 
 Commands:
+
     helm repo add bitnami https://charts.bitnami.com/bitnami
     helm search repo bitnami
     helm install my-release bitnami/<chart>
