@@ -50,13 +50,13 @@ vim kube-eksctl-awscli.sh
 
 Minikube Install:
 
-apt-get update -y
-apt-get install docker.io -y
-sudo usermod -aG docker ubuntu
-curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
-sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
-minikube start
-alias kubectl="minikube kubectl --"
+        apt-get update -y
+        apt-get install docker.io -y
+        sudo usermod -aG docker ubuntu
+        curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
+        sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
+        minikube start
+        alias kubectl="minikube kubectl --"
 
 Install helm on ubuntu:
     
