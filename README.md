@@ -10,6 +10,44 @@ To install any package in our system, we need a repository, just like yum or apt
 
 Bitnami is a popular maintainer of Helm repository: https://bitnami.com/
 
+**Note**: Before installing helm, install any kubernetes distribution
+
+Eks Install:
+
+vim kube-eksctl-awscli.sh
+
+        apt install unzip -y
+        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+        unzip awscliv2.zip
+        sudo ./aws/install
+        aws --version
+        
+        #!/bin/bash
+        set -e
+        uname -m  # Should print x86_64
+        mkdir -p kubectlbinary && cd kubectlbinary
+        curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.33.5/2025-09-19/bin/linux/amd64/kubectl
+        chmod +x ./kubectl
+        mkdir -p $HOME/bin
+        cp ./kubectl $HOME/bin/kubectl
+        export PATH=$HOME/bin:$PATH
+        grep -qxF 'export PATH=$HOME/bin:$PATH' ~/.bashrc || echo 'export PATH=$HOME/bin:$PATH' >> ~/.bashrc
+        kubectl version --client
+        
+        # for ARM systems, set ARCH to: `arm64`, `armv6` or `armv7`
+        ARCH=amd64
+        PLATFORM=$(uname -s)_$ARCH
+        curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+        # (Optional) Verify checksum
+        curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
+        tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+        sudo install -m 0755 /tmp/eksctl /usr/local/bin && rm /tmp/eksctl
+        eksctl version
+        
+        eksctl create cluster --name sunny-eks --region=ap-south-1 --node-type t2.micro --nodes-min 1 --nodes-max 1
+        
+        eksctl utils associate-iam-oidc-provider --region=ap-south-1 --cluster sunny-eks --approve
+
 Minikube Install:
 
 apt-get update -y
@@ -28,9 +66,12 @@ Install helm on ubuntu:
 
 Commands:
 
-    helm repo add bitnami https://charts.bitnami.com/bitnami
-    helm search repo bitnami
-    helm install my-release bitnami/<chart>
+    helm repo add bitnami https://charts.bitnami.com/bitnami    # add repo
+    helm repo list                       # get repo name    
+    helm search repo | grep mysql        # get specific package
+    helm search repo bitnami             # list all packages
+    helm search repo mysql               # list all package specific to mysql
+    helm install my-release bitnami/<chart>    
     helm search repo bitnami | grep prometheus
     helm install nginxv1 bitnami/nginx
     helm install prometheusv1 bitnami/prometheus
