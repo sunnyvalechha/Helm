@@ -71,11 +71,17 @@ Commands:
     helm search repo | grep mysql        # get specific package
     helm search repo bitnami             # list all packages
     helm search repo mysql               # list all package specific to mysql
+    helm repo update                     # helm repo update
+    helm install sun-nginx bitnami/nginx  # install a package
+    helm list | helm ls                 # list installed package
+    kubectl get pods                    # get installed package as a pod
+    helm ls --output=yaml               # get output as yaml
+
     helm install my-release bitnami/<chart>    
     helm search repo bitnami | grep prometheus
     helm install nginxv1 bitnami/nginx
     helm install prometheusv1 bitnami/prometheus
-    kubectl get pods        # after installing Prometheus charts, we should get prom alert manager and prom server
+     after installing Prometheus charts, we should get prom alert manager and prom server
 
 Q: What if any chart is not available in Bitnami?
 A: We can get through Google > "install aws load balancer controller with helm" >> https://docs.aws.amazon.com/eks/latest/userguide/lbc-helm.html
