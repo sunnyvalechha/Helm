@@ -76,6 +76,12 @@ Commands:
     helm list | helm ls                 # list installed package
     kubectl get pods                    # get installed package as a pod
     helm ls --output=yaml               # get output as yaml
+    helm upgrade grafana bitnami/grafana --namespace default --version 12.1.8        # upgrade chart
+    helm history grafana
+    helm status grafana        # get overall status of chart's pod
+    
+
+    
 
     helm install my-release bitnami/<chart>    
     helm search repo bitnami | grep prometheus
