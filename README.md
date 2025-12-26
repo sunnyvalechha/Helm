@@ -60,6 +60,8 @@ Minikube Install:
         minikube start
         alias kubectl="minikube kubectl --"
 
+        minikube start --driver=docker        # Run as a regular user
+
 Install helm on ubuntu:
     
     curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-4
