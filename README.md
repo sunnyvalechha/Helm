@@ -61,6 +61,7 @@ Minikube Install:
         alias kubectl="minikube kubectl --"
 
         minikube start --driver=docker        # Run as a regular user
+        alias kubectl="minikube kubectl --"        # Setting alias
 
 Install helm on ubuntu:
     
