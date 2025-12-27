@@ -72,18 +72,28 @@ Install helm on ubuntu:
 Commands:
 
     helm repo add bitnami https://charts.bitnami.com/bitnami    # add repo
-    helm repo list                       # get repo name    
-    helm search repo | grep mysql        # get specific package
-    helm search repo bitnami             # list all packages
-    helm search repo mysql               # list all package specific to mysql
-    helm repo update                     # helm repo update
-    helm install sun-nginx bitnami/nginx  # install a package
-    helm list | helm ls                 # list installed package
-    kubectl get pods                    # get installed package as a pod
-    helm ls --output=yaml               # get output as yaml
+    helm repo list                               # get repo name
+    helm list                                    # get installed package list
+    helm search repo | grep mysql                # get specific package
+    helm search repo bitnami                     # show all packages in the bitnami repo
+    helm search repo mysql                       # list all packages specific to mysql
+    helm repo update                             # helm repo update
+    helm install <any-name> <package-name>
+    helm install sun-nginx bitnami/nginx         # install a package
+    helm install -n team2 mysql bitnami/mysql    # install package in a namespace
+    helm list -n team2                           # list package in a namespace
+    helm uninstall nginx -n team2                # uninstall package in a namespace
+    helm list or helm ls                         # list installed package
+    helm install -n team2 mydb bitnami/mysql --set auth.rootPassword=test1234        # give password to db user, but this method is not recomended
+    vim values.yaml
+    auth:
+          rootPassword: "test134"
+    helm install -n team2 mydb bitnami/mysql --values values.yaml                # recomended way
+    kubectl get pods                            # get installed package as a pod
+    helm ls --output=yaml                       # get output as yaml
     helm upgrade grafana bitnami/grafana --namespace default --version 12.1.8        # upgrade chart
     helm history grafana
-    helm status grafana        # get overall status of chart's pod
+    helm status grafana                        # get overall status of the chart's pod
     
 
     
