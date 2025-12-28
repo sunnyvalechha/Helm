@@ -57,8 +57,8 @@ Minikube Install:
         sudo usermod -aG docker ubuntu
         curl -LO https://github.com/kubernetes/minikube/releases/latest/download/minikube-linux-amd64
         sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
-        minikube start
-        alias kubectl="minikube kubectl --"
+
+* Logout & Login
 
         minikube start --driver=docker        # Run as a regular user
         alias kubectl="minikube kubectl --"        # Setting alias
