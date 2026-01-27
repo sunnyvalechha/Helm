@@ -71,30 +71,30 @@ Install helm on ubuntu:
 
 Helm all commands:
 
-helm create
-helm install
-helm upgrade
-helm rollback
-helm package
-helm list
-helm repo
-helm search
-helm lint
-helm template
-helm get
-helm history
-helm pull
-helm plugin
-helm show
-helm status
-helm test
-helm verify
-helm version
-helm env
-helm dependency
-helm push
-helm uninstall
-helm help
+        helm create
+        helm install
+        helm upgrade
+        helm rollback
+        helm package
+        helm list
+        helm repo
+        helm search
+        helm lint
+        helm template
+        helm get
+        helm history
+        helm pull
+        helm plugin
+        helm show
+        helm status
+        helm test
+        helm verify
+        helm version
+        helm env
+        helm dependency
+        helm push
+        helm uninstall
+        helm help
 
 Commands in breif:
 
