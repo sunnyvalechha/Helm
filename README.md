@@ -69,7 +69,34 @@ Install helm on ubuntu:
     chmod 700 get_helm.sh
     ./get_helm.sh
 
-Commands:
+Helm all commands:
+
+helm create
+helm install
+helm upgrade
+helm rollback
+helm package
+helm list
+helm repo
+helm search
+helm lint
+helm template
+helm get
+helm history
+helm pull
+helm plugin
+helm show
+helm status
+helm test
+helm verify
+helm version
+helm env
+helm dependency
+helm push
+helm uninstall
+helm help
+
+Commands in breif:
 
     helm repo add bitnami https://charts.bitnami.com/bitnami    # add repo
     helm repo list                               # get repo name
