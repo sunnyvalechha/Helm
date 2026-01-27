@@ -1,7 +1,8 @@
 Helm:
 
-* Helm is a package manager for Kubernetes that allows us to install any controller on Kubernetes. Example: Prometheus, Grafana, ArgoCD, or any application like nginx, httpd. It can be installed through Helm.
-* We can install, Uninstall, Update, or package an application as a Helm chart so that someone else can also be able to installation the same application through Helm.
+* Helm is a package manager for Kubernetes that allows us to install any controller on Kubernetes.
+* Example: Prometheus, Grafana, ArgoCD, or any application like nginx, httpd. It can be installed through Helm.
+* We can install, Uninstall, Update, or package an application as a Helm chart so that someone else can also be able to install the same application through Helm.
 * Kubernetes should be installed on the system, but not mandatory.
 
 Helm Repository:
@@ -50,6 +51,26 @@ vim kube-eksctl-awscli.sh
         
         eksctl utils associate-iam-oidc-provider --region=ap-south-1 --cluster sunny-eks --approve
 
+KIND cluster setup:
+
+        sudo apt update -y
+        sudo apt install docker.io
+        sudo systemctl status docker
+        sudo usermod -aG docker ubuntu
+
+        # For AMD64 / x86_64
+        [ $(uname -m) = x86_64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.31.0/kind-linux-amd64
+        # For ARM64
+        [ $(uname -m) = aarch64 ] && curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.31.0/kind-linux-arm64
+        chmod +x ./kind
+        sudo mv ./kind /usr/local/bin/kind
+
+        kind create cluster --name kind-2
+
+        kind get clusters
+
+        kubectl cluster-info --context kind-kind
+        
 Minikube Install:
 
         apt-get update -y
